@@ -1,48 +1,83 @@
-$(function () {
+$(document).ready(function () {
 
-    var dataObj = { lname: null, fname: null, email: null, repeatemail: null, passportno: null, phoneno: null };
-    $("#lname").on("change paste keyup", function () {
-        let lname = $(this).val();
-        dataObj.lname = lname;
-    });
-    $("#fname").on("change paste keyup", function () {
-        let fname = $(this).val();
-        dataObj.fname = fname;
-    });
-    $("#email").on("change paste keyup", function () {
-        let email = $(this).val();
-        dataObj.email = email;
-    });
-    $("#repeatemail").on("change paste keyup", function () {
-        let repeatemail = $(this).val();
-        dataObj.repeatemail = repeatemail;
-    });
-    $("#passportno").on("change paste keyup", function () {
-        let passportno = $(this).val();
-        dataObj.passportno = passportno;
-    });
-    $("#phoneno").on("change paste keyup", function () {
-        let phoneno = $(this).val();
-        dataObj.phoneno = phoneno;
-    });
-
-
-    $("#Submit").click(function () {
-        if (dataObj.fname != null) {
-            alert("data saved");
-            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-                chrome.storage.sync.set({
-                    entereddata: dataObj
-                })
-                // chrome.tabs.sendMessage(tabs[0].id, {
-                //     todo: "submitForm",
-                //     entereddata: dataObj
-                // });
-            })
-
-        } else {
-            alert("Please enter all required data!!!!!!!!")
+    $("form[name='registration']").validate({
+        rules: {
+            firstname: {
+                required: true,
+                minlength: 5
+            },
+            lastname: {
+                required: true,
+                minlength: 5
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            passportno: {
+                required: true,
+                minlength: 9,
+                maxlength: 9
+            },
+            phoneno: {
+                digits: true,
+                required: true,
+                minlength: 10,
+                maxlength: 10
+            }
+        },
+        messages: {
+            firstname: {
+                required: "Enter First Name",
+                minlength: "First Name should be atleast 5 characcters"
+            },
+            lastname: {
+                required: "Enter Last Name",
+                minlength: "Last Name should be atleast 5 characcters"
+            },
+            email: {
+                required: "Enter email",
+                email: "The email should be in the format name@domain.com"
+            },
+            passportno: {
+                required: "Please Enter Valid Passport Number",
+                minlength: "Passport Number should be 9 characters",
+                maxlength: "Passport Number should be 9 characters"
+            },
+            phoneno: {
+                required: "Please Enter Valid Phone Number",
+                number: "Please enter your Phone Number as a numerical value",
+                minlength: "Phone Number should be 10 characters",
+                maxlength: "Phone Number should be 10 characters"
+            },
         }
-
     });
-})
+    $("form").submit(function () {
+        const formObj = {
+            fname: $("#fname").val(),
+            lname: $("#lname").val(),
+            email: $("#email").val(),
+            passportno: $("#passportno").val(),
+            phoneno: $("#phoneno").val(),
+        };
+        chrome.storage.sync.set({ "formData": formObj });
+        chrome.storage.sync.get("formData", function (obj) {
+            $("#fname").val(obj.formData.fname);
+            $("#lname").val(obj.formData.lname);
+            $("#email").val(obj.formData.email);
+            $("#passportno").val(obj.formData.passportno);
+            $("#phoneno").val(obj.formData.phoneno);
+        });
+    });
+
+    chrome.storage.sync.get("formData", function (obj) {
+        $("#fname").val(obj.formData.fname);
+        $("#lname").val(obj.formData.lname);
+        $("#email").val(obj.formData.email);
+        $("#passportno").val(obj.formData.passportno);
+        $("#phoneno").val(obj.formData.phoneno);
+    });
+});
+
+
+

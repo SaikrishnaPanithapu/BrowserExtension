@@ -68,10 +68,6 @@ document.onreadystatechange = function () {
     }
 };
 
-// chrome.storage.sync.get("entereddata",function(data){
-//     alert(data)
-// })
-
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     chrome.storage.sync.get("entereddata", function (data) {
         console.log(data);
