@@ -71,11 +71,13 @@ $(document).ready(function () {
     });
 
     chrome.storage.sync.get("formData", function (obj) {
-        $("#fname").val(obj.formData.fname);
-        $("#lname").val(obj.formData.lname);
-        $("#email").val(obj.formData.email);
-        $("#passportno").val(obj.formData.passportno);
-        $("#phoneno").val(obj.formData.phoneno);
+        if (obj.formData) {
+            $("#fname").val(obj.formData.fname);
+            $("#lname").val(obj.formData.lname);
+            $("#email").val(obj.formData.email);
+            $("#passportno").val(obj.formData.passportno);
+            $("#phoneno").val(obj.formData.phoneno);
+        }
     });
 });
 
