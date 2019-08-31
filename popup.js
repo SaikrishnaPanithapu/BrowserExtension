@@ -4,11 +4,11 @@ $(document).ready(function () {
         rules: {
             firstname: {
                 required: true,
-                minlength: 5
+                minlength: 2
             },
             lastname: {
                 required: true,
-                minlength: 5
+                minlength: 2
             },
             email: {
                 required: true,
@@ -16,8 +16,8 @@ $(document).ready(function () {
             },
             passportno: {
                 required: true,
-                minlength: 9,
-                maxlength: 9
+                minlength: 8,
+                maxlength: 8
             },
             phoneno: {
                 digits: true,
@@ -29,11 +29,11 @@ $(document).ready(function () {
         messages: {
             firstname: {
                 required: "Enter First Name",
-                minlength: "First Name should be atleast 5 characcters"
+                minlength: "First Name should be atleast 2 characcters"
             },
             lastname: {
                 required: "Enter Last Name",
-                minlength: "Last Name should be atleast 5 characcters"
+                minlength: "Last Name should be atleast 2 characcters"
             },
             email: {
                 required: "Enter email",
@@ -41,8 +41,8 @@ $(document).ready(function () {
             },
             passportno: {
                 required: "Please Enter Valid Passport Number",
-                minlength: "Passport Number should be 9 characters",
-                maxlength: "Passport Number should be 9 characters"
+                minlength: "Passport Number should be 8 characters",
+                maxlength: "Passport Number should be 8 characters"
             },
             phoneno: {
                 required: "Please Enter Valid Phone Number",
