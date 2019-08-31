@@ -10,22 +10,10 @@ document.onreadystatechange = function () {
         $("#appointment_captcha_month_captchaText").select();
         checkAppointmentAvailability();
     }
-    // else if (document.readyState == "complete" && document.URL == "https://service2.diplo.de/rktermin/extern/appointment_showMonth.do") {
-    //     alert("No Appointment page!!!")
-    //     if (document.getElementsByTagName("a")[3]) {
-    //         document.getElementsByTagName("a")[3].click();
-    //     }
-    // }
-    // else if (document.readyState == "complete" && document.URL == "https://service2.diplo.de/rktermin/extern/appointment_refreshCaptchamonth.do") {
-    //     alert("from captch error page !!!")
-    //     if (document.getElementsByTagName("a")[3]) {
-    //         document.getElementsByTagName("a")[3].click();
-    //     }
-    // }
     else if (document.readyState == "complete" && (document.URL.includes("https://service2.diplo.de/rktermin/extern/appointment_showMonth.do?locationCode=banga&realmId=210&categoryId=337&dateStr=")
         || document.URL == "https://service2.diplo.de/rktermin/extern/appointment_showMonth.do"
-        || document.URL.includes("https://service2.diplo.de/rktermin/extern/appointment_showMonth.do;jsessionid="))) {
-
+        || document.URL.includes("https://service2.diplo.de/rktermin/extern/appointment_showMonth.do;jsessionid=")
+        || document.URL == "https://service2.diplo.de/rktermin/extern/appointment_refreshCaptchamonth.do")) {
         checkAppointmentAvailability();
     }
     else if (document.readyState == "complete" && document.URL.includes("https://service2.diplo.de/rktermin/extern/appointment_showDay.do")) {
@@ -54,7 +42,10 @@ document.onreadystatechange = function () {
             if (document.getElementsByTagName("a")[4].href == "https://service2.diplo.de/rktermin/extern/dsgvo.do?request_locale=en" && monthsDifference(selected_date, current_date) < 3) {
                 document.getElementsByTagName("a")[3].click();
             } else if (document.getElementsByTagName("a")[4].href == "https://service2.diplo.de/rktermin/extern/dsgvo.do?request_locale=en" && monthsDifference(selected_date, current_date) == 3) {
-                alert('No Appointments Available for next 3 months!!!')
+                setTimeout(() => {
+                    let urlDate = current_date.getDate() + "." + current_date.getMonth() + "." + current_date.getFullYear();
+                    window.open('https://service2.diplo.de/rktermin/extern/appointment_showMonth.do?locationCode=banga&realmId=210&categoryId=337&dateStr=' + urlDate, "_self")
+                }, 2000);
             } else {
                 document.getElementsByTagName("a")[4].click();
             }

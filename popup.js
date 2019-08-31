@@ -53,12 +53,14 @@ $(document).ready(function () {
         }
     });
     $("form").submit(function () {
+        let location = document.getElementById('chen').checked ? 'chenn' : 'benga';
         const formObj = {
             fname: $("#fname").val(),
             lname: $("#lname").val(),
             email: $("#email").val(),
             passportno: $("#passportno").val(),
             phoneno: $("#phoneno").val(),
+            location: location,
         };
         chrome.storage.sync.set({ "formData": formObj });
         chrome.storage.sync.get("formData", function (obj) {
@@ -67,6 +69,7 @@ $(document).ready(function () {
             $("#email").val(obj.formData.email);
             $("#passportno").val(obj.formData.passportno);
             $("#phoneno").val(obj.formData.phoneno);
+            obj.formData.location === 'chenn' ? document.getElementById('chen').checked = true : document.getElementById('bang').checked = true; 
         });
     });
 
@@ -77,6 +80,8 @@ $(document).ready(function () {
             $("#email").val(obj.formData.email);
             $("#passportno").val(obj.formData.passportno);
             $("#phoneno").val(obj.formData.phoneno);
+            obj.formData.location === 'chenn' ? document.getElementById('chen').checked = true : document.getElementById('bang').checked = true; 
+
         }
     });
 });
