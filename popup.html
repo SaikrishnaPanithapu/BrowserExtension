@@ -10,18 +10,16 @@
 </head>
 
 <body>
-    <h2 style="text-align: center">Fill the Form details</h2>
+    <!-- <h2 style="text-align: center">Fill the Form details</h2> -->
     <p>
-        <p>
-            <div>
-                <form>
-                    Are booking from which location?<br>
-                    <input type="radio" name="location" id="bang">Bangalore<br>
-                    <input type="radio" name="location" id="chen">Chennai
-                </form>
-            </div>
 
-        </p>
+        <div>
+            <form>
+                Are you booking from which location?<br>
+                <input type="radio" name="location" id="bang">Bangalore
+                <input type="radio" name="location" id="chen">Chennai
+            </form>
+        </div>
         <form name="registration" id="registration" action="">
             <p>
                 <label for="fname">First Name</label>
@@ -42,6 +40,36 @@
             <p>
                 <label for="phoneno">Mobile Number (Do not include +91)</label>
                 <input type="text" id="phoneno" name="phoneno" placeholder="Phone Number">
+            </p>
+            <p>
+                <label>Purpose (Only for chennai location)</label>
+                <select id='purposeId'>
+                    <option value="">-- Choose Option (Only for chennai location) --</option>
+                    <option value="Erwerbstätigkeit/ Employment">Erwerbstätigkeit/ Employment</option>
+                    <option value="Studium/ Studying">Studium/ Studying</option>
+                    <option value="Familienzusammenführung/ Family reunion">Familienzusammenführung/ Family reunion
+                    </option>
+                    <option value="Gastwissenschaftler und Forschung/ Guest scientist and research">Gastwissenschaftler
+                        und Forschung/ Guest scientist and research</option>
+                    <option value="Praktikum/ Training and Internship">Praktikum/ Training and Internship</option>
+                    <option value="Au Pair">Au Pair</option>
+                    <option value="Spezialitätenkoch/ Speciality cook">Spezialitätenkoch/ Speciality cook</option>
+                    <option
+                        value="Schließung einer Ehe oder Lebenspartnerschaft/ Intended marriage or establishment of a civil union">
+                        Schließung einer Ehe oder Lebenspartnerschaft/ Intended marriage or establishment of a civil
+                        union</option>
+
+
+                </select>
+
+            </p>
+            <p>
+                <label>DOB (Only for chennai location)</label>
+                <input type="date" id="dob" name="bday">
+            </p>
+            <p>
+                <label>Nationality (Only for chennai location)</label>
+                <input type="text" id="nationality" name="nationality">
             </p>
             <p>
                 <input type="submit" id="Submit">
